@@ -34,12 +34,16 @@ for i in range(m):
             x = min(x,C[i][j])
         if(temp):
             R.append(j+1)
-print(V)
-print(R)
-print(x)
- #Algorithm 2 
+#print(V)
+#print(R)
+#print(x)
+#Algorithm 2 
 X = []
 Y = R
-P = []
-Q = []
- 
+P = {}#price by owner
+Q = {}#payment of user
+for i in Y:
+    temp = x
+    Q[i] = 0
+    Q[i]+=temp
+    T = 
