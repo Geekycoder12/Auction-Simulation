@@ -21,7 +21,12 @@ for i in range(n):
     D.append(int(input("Enter Demand of User {}:".format(i+1))))
 
 sorted(D)
- 
+
+rep = []
+for k in range(m):
+    rep.append(float(input("Enter Reputation of Model Owner {}:".format(k+1))))
+# or randomise above
+
 p = math.ceil((n+1)/2)
 x = p
 V = {}
@@ -35,7 +40,7 @@ for i in range(n):
         if(C[i][j] > D[p-1] and D[i] <= D[p-1]):
             #V.append(i+1,j+1)
             V[i+1].append(j+1)
-            Priority[i+1].append(C[i][j]*R[j])
+            Priority[i+1].append(C[i][j]*rep[j])
             temp = 1
             x = min(x,C[i][j])
         if(temp):
@@ -58,10 +63,30 @@ for i in Y:
     for j in T:
         prior.append(Priority[i-1][j-1])
     def delta(x):
-        t = prior.index(x)
+        t = prior[T.index(x)]
         return t
     if (len(T) == 1):
         X[i] = T[0]
         P[X[i]] += temp
     else:
-        sorted(T,key=delta)
+        T = sorted(T,key=delta)
+        bid = []
+        for j in T:
+            bid.append(C[i-1][j-1])
+        ma = 0
+        if(prior[0]!=prior[1]):
+            X[i] = T[0]
+        else:
+            for j in range(len(T)-1):
+                if(prior[j] == prior[j+1]):
+                    ma = max(ma,bid[j])
+                    ma = max(ma,bid[j+1])
+                else:
+                    break
+                X[i] = T[bid.index(ma)]
+        
+
+O = {} #Owner Mapping
+for i in X:
+    O[X[i]] = i
+
