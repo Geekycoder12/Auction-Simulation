@@ -58,7 +58,8 @@ for i in Y:
     for j in T:
         prior.append(Priority[i-1][j-1])
     def delta(x):
-        return prior(x.index())
+        t = prior.index(x)
+        return t
     if (len(T) == 1):
         X[i] = T[0]
         P[X[i]] += temp
