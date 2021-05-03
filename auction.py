@@ -10,7 +10,7 @@ C = []
 for i in range(m):
     temp = []
     for j in range(n):
-        temp.append(int(input("Enter bid of model owner {} for user {}:".format(i+1,j+1))))
+        temp.append(int(input("Enter bid of model owner {} for user {}:".format(i+1,+1))))
     C.append(temp)
 
 D =[]
@@ -26,7 +26,9 @@ R = []
 for i in range(m):
     for j in range(n):
         if(C[i][j] > D[p] and D[j] < D[p]):
-            V.append(i,j)
-            R.append(i)
+            #V.append(i+1,j+1)
+            V.append(j+1)
+            R.append(i+1)
             x = min(x,C[i][j])
 
+ 
