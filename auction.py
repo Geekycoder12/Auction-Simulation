@@ -7,10 +7,13 @@ import math
 m = int(input("Enter no of model owners:"))
 n = int(input("Enter no of users:"))
 C = []
+p = 0
 for i in range(n):
     temp = []
     for j in range(m):
-        temp.append(int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1))))
+        num = int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1)))
+        p = max(p,num)
+        temp.append(num)
     C.append(temp)
 
 D =[]
@@ -20,7 +23,7 @@ for i in range(n):
 sorted(D)
  
 p = math.ceil((n+1)/2)
-x = 0
+x = p
 V = {}
 R = []
 for i in range(n):
@@ -52,5 +55,3 @@ for i in Y:
         P[X[i]] += temp
     else:
         
-
-
