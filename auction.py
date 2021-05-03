@@ -7,12 +7,12 @@ import math
 m = int(input("Enter no of model owners:"))
 n = int(input("Enter no of users:"))
 C = []
-p = 0
+k = 0
 for i in range(n):
     temp = []
     for j in range(m):
         num = int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1)))
-        p = max(p,num)
+        k = max(k,num)
         temp.append(num)
     C.append(temp)
 
@@ -54,8 +54,11 @@ for i in Y:
     Q[i] = 0
     Q[i]+=temp
     T = V[i]
-    def delta():
-        return Priority[i][]
+    prior = []
+    for j in T:
+        prior.append(Priority[i-1][j-1])
+    def delta(x):
+        return prior(x.index())
     if (len(T) == 1):
         X[i] = T[0]
         P[X[i]] += temp
