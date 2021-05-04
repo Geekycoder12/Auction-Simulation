@@ -19,8 +19,7 @@ for i in range(n):
 D =[]
 for i in range(n):
     D.append((int(input("Enter Demand of User {}:".format(i+1))))
-
-D = sorted(D)
+D.sort()
 
 rep = []
 for k in range(m):
@@ -76,6 +75,7 @@ for i in Y:
         ma = 0
         if(prior[0]!=prior[1]):
             X[i] = T[0]
+            P[X[i]] = bid[0]
         else:
             for j in range(len(T)-1):
                 if(prior[j] == prior[j+1]):
@@ -84,7 +84,7 @@ for i in Y:
                 else:
                     break
                 X[i] = T[bid.index(ma)]
-        
+                p[X[i]] = bid[bid.index(ma)]
 
 O = {} #Owner Mapping
 for i in X:
@@ -137,5 +137,8 @@ for i in O:
             l = random(0,b)
             Owner[i] = Z[b]
         
-
+print(userutil)
+print(ownerutil)
+print(X)
+print(Z)
     
