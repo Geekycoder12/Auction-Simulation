@@ -20,7 +20,7 @@ D =[]
 for i in range(n):
     D.append((int(input("Enter Demand of User {}:".format(i+1))))
 
-sorted(D)
+D = sorted(D)
 
 rep = []
 for k in range(m):
