@@ -88,5 +88,45 @@ for i in Y:
 
 O = {} #Owner Mapping
 for i in X:
-    O[X[i]] = i
+    O[X[i]] = []
+for i in X:
+    O[X[i]].append(i)
 
+Cost = {}
+for i in X:
+    Cost[i]=int(input("Enter Cost of user {}:".format(i)))
+
+Val = {}
+for i in O:
+    Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
+
+#Algorithm 3
+Owner = {}
+userutil = {}
+ownerutil = {}
+for i in X:
+    userutil[i] = Q[i] - Cost[i]
+
+for i in O:
+    ownerutil = Val[i] - P[i]
+
+for i in O:
+    Z = O[i]
+    tempownerutil = []
+    for j in Z:
+        x = (C[j-1][i-1] - P[i])
+        tempownerutil.append(x)
+    def utility(x):
+        t = tempownerutil(Z.index(x))
+        return t
+    tempownerutil.sort(reverse=True)
+    Z = sorted(Z,key=utility)
+    if len(Z)==1:
+        Owner[i] = Z[0]
+    else:
+        if(tempownerutil[0]!=tempownerutil[1]):
+            Owner[i] = Z[0]
+        else:
+            
+
+    
