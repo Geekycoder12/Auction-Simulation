@@ -18,7 +18,7 @@ for i in range(n):
 
 D =[]
 for i in range(n):
-    D.append(int(input("Enter Demand of User {}:".format(i+1))))
+    D.append((int(input("Enter Demand of User {}:".format(i+1))))
 
 sorted(D)
 
@@ -117,7 +117,7 @@ for i in O:
         x = (C[j-1][i-1] - P[i])
         tempownerutil.append(x)
     def utility(x):
-        t = tempownerutil(Z.index(x))
+        t = tempownerutil[Z.index(x)]
         return t
     tempownerutil.sort(reverse=True)
     Z = sorted(Z,key=utility)
@@ -127,6 +127,15 @@ for i in O:
         if(tempownerutil[0]!=tempownerutil[1]):
             Owner[i] = Z[0]
         else:
-            
+            l=0
+            b=0
+            for j in range(len(Z)-1):
+                if (tempownerutil[j]==[j+1]):
+                    b = j+1
+                else:
+                    break
+            l = random(0,b)
+            Owner[i] = Z[b]
+        
 
     
