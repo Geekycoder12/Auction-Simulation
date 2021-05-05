@@ -2,10 +2,20 @@
 import random
 import statistics
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 #Algorithm 1
 m = int(input("Enter no of model owners:"))
 n = int(input("Enter no of users:"))
+
+D =[]
+for i in range(n):
+    D.append((int(input("Enter Demand of User {}:".format(i+1)))))
+
+D.sort()
+print(D)
+
 C = []
 k = 0
 for i in range(n):
@@ -16,11 +26,7 @@ for i in range(n):
         temp.append(num)
     C.append(temp)
 
-D =[]
-for i in range(n):
-    g = int(input("Enter Demand of User {}:".format(i+1)))
-    D.append(g)
-D.sort()
+
 
 rep = []
 for k in range(m):
@@ -29,21 +35,20 @@ for k in range(m):
 
 p = math.ceil((n+1)/2)
 x = p
-V = {}
+V = [[] for i in range(n)]
 Priority = {}
 R = []
 for i in range(n):
-    V[i+1] = []
-    Priority[i+1] = []
     temp = 0
+    Priority[i] = []
     for j in range(m):
         if(C[i][j] > D[p-1] and D[i] <= D[p-1]):
             #V.append(i+1,j+1)
-            V[i+1].append(j+1)
-            Priority[i+1].append(C[i][j]*rep[j])
+            V[i].append(j)
+            Priority[i].append(C[i][j]*rep[j])
             temp = 1
             x = min(x,C[i][j])
-        if(temp):
+    if(temp):
             R.append(i+1)
 #print(V)
 #print(R)
@@ -54,11 +59,12 @@ Y = R
 P = {}#price by owner
 Q = {}#payment of user
 
+
 for i in Y:
     temp = x
     Q[i] = 0
     Q[i]+=temp
-    T = V[i]
+    T = V[i-1]
     prior = []
     for j in T:
         prior.append(Priority[i-1][j-1])
@@ -67,16 +73,15 @@ for i in Y:
         return t
     if (len(T) == 1):
         X[i] = T[0]
-        P[X[i]] += temp
+        P[X[i]] = temp
     else:
-        T = sorted(T,key=delta)
+        T = sorted(T, key=delta)
         bid = []
         for j in T:
             bid.append(C[i-1][j-1])
         ma = 0
         if(prior[0]!=prior[1]):
             X[i] = T[0]
-            P[X[i]] = bid[0]
         else:
             for j in range(len(T)-1):
                 if(prior[j] == prior[j+1]):
@@ -85,13 +90,16 @@ for i in Y:
                 else:
                     break
                 X[i] = T[bid.index(ma)]
-                p[X[i]] = bid[bid.index(ma)]
+        
+print(T)
 
 O = {} #Owner Mapping
+G = {} 
 for i in X:
     O[X[i]] = []
 for i in X:
     O[X[i]].append(i)
+    G[X[i]] = C[i-1][X[i]-1]
 
 Cost = {}
 for i in X:
@@ -109,7 +117,10 @@ for i in X:
     userutil[i] = Q[i] - Cost[i]
 
 for i in O:
-    ownerutil = Val[i] - P[i]
+    try:
+        ownerutil[i] = Val[i] - P[i]
+    except:
+        ownerutil[i] = 0
 
 for i in O:
     Z = O[i]
@@ -135,11 +146,50 @@ for i in O:
                     b = j+1
                 else:
                     break
-            l = random.random(0,b)
+            l = random.randint(0,b)
             Owner[i] = Z[b]
-       
+
+print(P)
+print(Q)
+print(G)
 print(userutil)
 print(ownerutil)
-print(X)
-print(Owner)
-    
+
+
+# x_axis = [i for i in ownerutil]
+# y_axis = [ownerutil[i] for i in ownerutil]
+
+# plt.plot(x_axis, y_axis)
+# plt.title('Utility of Owers')
+# plt.xlabel('Model Owner')
+# plt.ylabel('Utility of Model Owners')
+# plt.show()
+
+x_axis  = [i for i in ownerutil]
+y_axis  = [ownerutil[i] for i in ownerutil]
+plt.bar(x_axis,y_axis)
+plt.show() 
+
+x_axis = [i for i in userutil]
+y_axis = [userutil[i] for i in userutil]
+plt.bar(x_axis,y_axis)
+plt.show()
+
+barwidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
+bids = [G[i] for i in G]
+price = [P[i] for i in P]
+
+br1 = np.arange(len(bids))
+br2 = [i + barwidth for i in bids]
+
+plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
+plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
+
+plt.xlabel('Model Owner',frontweight='bold',fontsize=15)
+plt.ylabel('Bids and Payments',frontweight='bold',fontsize=15)
+plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
+
+plt.legend()
+plt.show()
+
