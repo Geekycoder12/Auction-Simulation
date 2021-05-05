@@ -30,7 +30,7 @@ for i in range(n):
     temp = []
     for j in range(m):
         # num = int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1)))
-        num = random.randint(2,10)
+        num = random.randint(0,10)
         k = max(k,num)
         temp.append(num)
     C.append(temp)
