@@ -2,16 +2,24 @@
 import random
 import statistics
 import math
+# from matplotlib import *
 import matplotlib.pyplot as plt
+
 import numpy as np
 
 #Algorithm 1
-m = int(input("Enter no of model owners:"))
-n = int(input("Enter no of users:"))
+# m = int(input("Enter no of model owners:"))
+# n = int(input("Enter no of users:"))
+
+m = random.randint(5,10)
+n = random.randint(11,25)
+
+
 
 D =[]
 for i in range(n):
-    D.append((int(input("Enter Demand of User {}:".format(i+1)))))
+    # D.append((int(input("Enter Demand of User {}:".format(i+1)))))
+    D.append(random.randint(2,10))
 
 D.sort()
 print(D)
@@ -21,7 +29,8 @@ k = 0
 for i in range(n):
     temp = []
     for j in range(m):
-        num = int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1)))
+        # num = int(input("Enter bid of model owner {} for user {}:".format(j+1,i+1)))
+        num = random.randint(2,10)
         k = max(k,num)
         temp.append(num)
     C.append(temp)
@@ -30,22 +39,25 @@ for i in range(n):
 
 rep = []
 for k in range(m):
-    rep.append(float(input("Enter Reputation of Model Owner {}:".format(k+1))))
+    # rep.append(float(input("Enter Reputation of Model Owner {}:".format(k+1))))
+    rep.append(round(random.uniform(0,1), 2))
 # or randomise above
 
 p = math.ceil((n+1)/2)
 x = p
-V = [[] for i in range(n)]
+# V = [[] for i in range(n)]
+V = {}
 Priority = {}
 R = []
 for i in range(n):
+    V[i+1] = []
     temp = 0
-    Priority[i] = []
+    Priority[i+1] = []
     for j in range(m):
         if(C[i][j] > D[p-1] and D[i] <= D[p-1]):
             #V.append(i+1,j+1)
-            V[i].append(j)
-            Priority[i].append(C[i][j]*rep[j])
+            V[i+1].append(j+1)
+            Priority[i+1].append(C[i][j]*rep[j])
             temp = 1
             x = min(x,C[i][j])
     if(temp):
@@ -64,10 +76,10 @@ for i in Y:
     temp = x
     Q[i] = 0
     Q[i]+=temp
-    T = V[i-1]
+    T = V[i]
     prior = []
-    for j in T:
-        prior.append(Priority[i-1][j-1])
+    for j in range(len(T)):
+        prior.append(Priority[i][j-1])
     def delta(x):
         t = prior[T.index(x)]
         return t
@@ -82,6 +94,7 @@ for i in Y:
         ma = 0
         if(prior[0]!=prior[1]):
             X[i] = T[0]
+            P[X[i]] = min(C[i-1][T[0]-1],C[i-1][T[1]-1])
         else:
             for j in range(len(T)-1):
                 if(prior[j] == prior[j+1]):
@@ -90,8 +103,8 @@ for i in Y:
                 else:
                     break
                 X[i] = T[bid.index(ma)]
-        
-print(T)
+                P[X[i]] = C[i-1][X[i]-1]
+    print(T)
 
 O = {} #Owner Mapping
 G = {} 
@@ -103,11 +116,13 @@ for i in X:
 
 Cost = {}
 for i in X:
-    Cost[i]=int(input("Enter Cost of user {}:".format(i)))
+    # Cost[i]=int(input("Enter Cost of user {}:".format(i)))
+    Cost[i] = random.randint(1,D[i-1])
 
 Val = {}
 for i in O:
-    Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
+    # Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
+    Val[i] = random.randint(10,13)
 
 #Algorithm 3
 Owner = {}
@@ -181,15 +196,31 @@ bids = [G[i] for i in G]
 price = [P[i] for i in P]
 
 br1 = np.arange(len(bids))
-br2 = [i + barwidth for i in bids]
-
+br2 = [i + barwidth for i in br1]
+# print(br1)
+# print(br2)
 plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
 plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-plt.xlabel('Model Owner',frontweight='bold',fontsize=15)
-plt.ylabel('Bids and Payments',frontweight='bold',fontsize=15)
+plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
+plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
 plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
 
 plt.legend()
 plt.show()
 
+#Payments and Demands of users
+dem = [D[i] for i in Q]
+payme = [Q[i] for i in Q]
+br1 = np.arange(len(dem))
+br2 = [i + barwidth for i in br1]
+
+plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
+plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+
+plt.xlabel('Winning User',fontweight='bold',fontsize=15)
+plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in Q])
+
+plt.legend()
+plt.show()
