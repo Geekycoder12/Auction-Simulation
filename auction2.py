@@ -210,8 +210,8 @@ plt.legend()
 plt.show()
 
 #Payments and Demands of users
-dem = [D[i] for i in Q]
-payme = [Q[i] for i in Q]
+dem = [D[i] for i in X]
+payme = [Q[i] for i in X]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
@@ -220,7 +220,7 @@ plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
 plt.xlabel('Winning User',fontweight='bold',fontsize=15)
 plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in Q])
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in X])
 
 plt.legend()
 plt.show()
