@@ -2,18 +2,20 @@
 import random
 import statistics
 import math
+import time
 # from matplotlib import *
 import matplotlib.pyplot as plt
 
 import numpy as np
-
+# begin = time.time()
 #Algorithm 1
 # m = int(input("Enter no of model owners:"))
 # n = int(input("Enter no of users:"))
 
 m = random.randint(5,10)
 n = random.randint(11,25)
-
+# n=100
+# m=100
 
 
 D =[]
@@ -22,7 +24,7 @@ for i in range(n):
     D.append(random.randint(2,10))
 
 D.sort()
-print(D)
+#print(D)
 
 C = []
 k = 0
@@ -104,7 +106,7 @@ for i in Y:
                     break
                 X[i] = T[bid.index(ma)]
                 P[X[i]] = C[i-1][X[i]-1]
-    print(T)
+    #print(T)
 
 O = {} #Owner Mapping
 G = {} 
@@ -132,10 +134,8 @@ for i in X:
     userutil[i] = Q[i] - Cost[i]
 
 for i in O:
-    try:
         ownerutil[i] = Val[i] - P[i]
-    except:
-        ownerutil[i] = 0
+   
 
 for i in O:
     Z = O[i]
@@ -164,11 +164,13 @@ for i in O:
             l = random.randint(0,b)
             Owner[i] = Z[b]
 
-print(P)
-print(Q)
-print(G)
-print(userutil)
-print(ownerutil)
+# print(P)
+# print(Q)
+# print(G)
+# print(userutil)
+# print(ownerutil)
+# end = time.time()
+# print(end-begin)
 
 
 # x_axis = [i for i in ownerutil]
@@ -183,11 +185,15 @@ print(ownerutil)
 x_axis  = [i for i in ownerutil]
 y_axis  = [ownerutil[i] for i in ownerutil]
 plt.bar(x_axis,y_axis)
+plt.xlabel('Model Owner')
+plt.ylabel('Utility')
 plt.show() 
 
 x_axis = [i for i in userutil]
 y_axis = [userutil[i] for i in userutil]
 plt.bar(x_axis,y_axis)
+plt.xlabel('Data Owner')
+plt.ylabel('Utility')
 plt.show()
 
 barwidth = 0.25
@@ -210,6 +216,8 @@ plt.legend()
 plt.show()
 
 #Payments and Demands of users
+barwidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
 dem = [D[i] for i in X]
 payme = [Q[i] for i in X]
 br1 = np.arange(len(dem))
