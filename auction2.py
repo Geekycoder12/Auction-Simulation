@@ -76,7 +76,6 @@ for i in range(n):
             bidmax = C[i][j]
             index = j
     newuser[i+1] = bidmax
-    newowner[index+1] +=bidmax
     owneruser[i+1] = index+1
 userowner = {}
 for te in owneruser:
@@ -84,14 +83,26 @@ for te in owneruser:
 for te in owneruser:
     userowner[owneruser[te]].append(te)
 
+
+
 for te in userowner:
-    if size(userowner[te]) > 1:
-        bidmin = INF
+    bidmin = 9999999
+    if len(userowner[te]) > 1:
         index = 0
         for j in userowner[te]:
-            bidmin  = min(bidmin,C[te-1][j-1])
+            bidmin  = min(bidmin,C[j-1][te-1])
+            # print(te)
+            # print(j)
             k = j
         userowner[te] = j
+        newowner[te] = bidmin
+    
+
+    
+
+owneruser = {}
+for i in userowner:
+    owneruser[userowner[i]] = i
 
 #print(V)
 #print(R)
@@ -164,7 +175,13 @@ for i in X:
 
 for i in O:
         ownerutil[i] = Val[i] - P[i]
-   
+
+newuserutil = {}
+newownerutil = {}
+for i in owneruser:
+    newuserutil[i] = newuser[i] - Cost[i]
+for i in userowner:
+    newownerutil[i] = Val[i] - newowner[i]
 
 for i in O:
     Z = O[i]
@@ -192,7 +209,9 @@ for i in O:
                     break
             l = random.randint(0,b)
             Owner[i] = Z[b]
-
+payment = {}
+for i in Owner:
+    payment[Owner[i]] = Q[Owner[i]]
 # print(P)
 # print(Q)
 # print(G)
@@ -247,8 +266,8 @@ plt.show()
 #Payments and Demands of users
 barwidth = 0.25
 fig = plt.subplots(figsize =(12, 8))
-dem = [D[i] for i in X]
-payme = [Q[i] for i in X]
+dem = [D[i] for i in payment]
+payme = [payment[i] for i in payment]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
@@ -261,3 +280,10 @@ plt.xticks([r + barwidth for r in range(len(dem))],[r for r in X])
 
 plt.legend()
 plt.show()
+
+x_axis  = [i for i in newownerutil]
+y_axis  = [newownerutil[i] for i in newownerutil]
+plt.bar(x_axis,y_axis)
+plt.xlabel('Model Owner')
+plt.ylabel('Utility')
+plt.show() 
