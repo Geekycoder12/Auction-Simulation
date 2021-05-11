@@ -51,6 +51,9 @@ x = p
 V = {}
 Priority = {}
 R = []
+newuser = {}
+newowner ={}
+owneruser = {}
 for i in range(n):
     V[i+1] = []
     temp = 0
@@ -64,6 +67,32 @@ for i in range(n):
             x = min(x,C[i][j])
     if(temp):
             R.append(i+1)
+
+for i in range(n):
+    bidmax = 0
+    index = 0
+    for j in range(m):
+        if(bidmax< C[i][j]):
+            bidmax = C[i][j]
+            index = j
+    newuser[i+1] = bidmax
+    newowner[index+1] +=bidmax
+    owneruser[i+1] = index+1
+userowner = {}
+for te in owneruser:
+    userowner[owneruser[te]]= []
+for te in owneruser:
+    userowner[owneruser[te]].append(te)
+
+for te in userowner:
+    if size(userowner[te]) > 1:
+        bidmin = INF
+        index = 0
+        for j in userowner[te]:
+            bidmin  = min(bidmin,C[te-1][j-1])
+            k = j
+        userowner[te] = j
+
 #print(V)
 #print(R)
 #print(x)
