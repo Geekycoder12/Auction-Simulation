@@ -16,7 +16,7 @@ import numpy as np
 # n = random.randint(11,25)
 # print(m)
 # print(n)
-n=50
+# n=50
 m=50
 show1 = []
 show2 = []
@@ -233,6 +233,22 @@ for hum in range(m,120,10):
     finalmap = {}
     for i in Owner:
         finalmap[Owner[i]] = i
+    sum3 = 0
+    for i in P:
+        sum3+=P[i]
+    show3.append(sum3)
+    sum4 = 0
+    for i in finalmap:
+        sum4+=Q[i]
+    show4.append(sum4)
+    sum2 = 0
+    for i in finalmap2:
+        sum2+=newuser[i]
+    show2.append(sum2)
+    sum1 = 0
+    for i in newowner:
+        sum1+=newowner[i]
+    show1.append(sum1)
     # print(P)
     # print(Q)
     # print(G)
@@ -251,113 +267,101 @@ for hum in range(m,120,10):
     # plt.ylabel('Utility of Model Owners')
     # plt.show()
 
-    x_axis  = [i for i in ownerutil]
-    y_axis  = [ownerutil[i] for i in ownerutil]
-    plt.bar(x_axis,y_axis)
-    plt.xlabel('Model Owner')
-    plt.ylabel('Utility')
-    # plt.show() 
+    # x_axis  = [i for i in ownerutil]
+    # y_axis  = [ownerutil[i] for i in ownerutil]
+    # plt.bar(x_axis,y_axis)
+    # plt.xlabel('Model Owner')
+    # plt.ylabel('Utility')
+    # # plt.show() 
 
-    x_axis = [i for i in finalmap]
-    y_axis = [userutil[i] for i in finalmap]
-    plt.bar(x_axis,y_axis)
-    plt.xlabel('Data Owner')
-    plt.ylabel('Utility')
-    # plt.show()
+    # x_axis = [i for i in finalmap]
+    # y_axis = [userutil[i] for i in finalmap]
+    # plt.bar(x_axis,y_axis)
+    # plt.xlabel('Data Owner')
+    # plt.ylabel('Utility')
+    # # plt.show()
 
-    barwidth = 0.25
-    fig = plt.subplots(figsize =(12, 8))
-    bids = [G[i] for i in G]
-    price = [P[i] for i in P]
-    sum3 = 0
-    for i in P:
-        sum3+=P[i]
-    show3.append(sum3)
-    br1 = np.arange(len(bids))
-    br2 = [i + barwidth for i in br1]
-    # print(br1)
-    # print(br2)
-    plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
-    plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
+    # barwidth = 0.25
+    # fig = plt.subplots(figsize =(12, 8))
+    # bids = [G[i] for i in G]
+    # price = [P[i] for i in P]
+    
+    # br1 = np.arange(len(bids))
+    # br2 = [i + barwidth for i in br1]
+    # # print(br1)
+    # # print(br2)
+    # plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
+    # plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-    plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
-    plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
-    plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
+    # plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
+    # plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
+    # plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
 
-    # plt.legend()
-    # plt.show()
+    # # plt.legend()
+    # # plt.show()
 
-    #Payments and Demands of users
-    barwidth = 0.25
-    fig = plt.subplots(figsize =(12, 8))
-    dem = [D[i-1] for i in finalmap]
-    payme = [Q[i] for i in finalmap]
-    sum4 = 0
-    for i in finalmap:
-        sum4+=Q[i]
-    show4.append(sum4)
-    br1 = np.arange(len(dem))
-    br2 = [i + barwidth for i in br1]
+    # #Payments and Demands of users
+    # barwidth = 0.25
+    # fig = plt.subplots(figsize =(12, 8))
+    # dem = [D[i-1] for i in finalmap]
+    # payme = [Q[i] for i in finalmap]
+    
+    # br1 = np.arange(len(dem))
+    # br2 = [i + barwidth for i in br1]
 
-    plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
-    plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+    # plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
+    # plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-    plt.xlabel('Winning User',fontweight='bold',fontsize=15)
-    plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
-    plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
+    # plt.xlabel('Winning User',fontweight='bold',fontsize=15)
+    # plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
+    # plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
 
-    # plt.legend()
-    # plt.show()
+    # # plt.legend()
+    # # plt.show()
 
-    x_axis  = [i for i in newownerutil]
-    y_axis  = [newownerutil[i] for i in newownerutil]
-    plt.bar(x_axis,y_axis)
-    plt.xlabel('Model Owner')
-    plt.ylabel('Utility')
-    # plt.show() 
+    # x_axis  = [i for i in newownerutil]
+    # y_axis  = [newownerutil[i] for i in newownerutil]
+    # plt.bar(x_axis,y_axis)
+    # plt.xlabel('Model Owner')
+    # plt.ylabel('Utility')
+    # # plt.show() 
 
-    x_axis  = [i for i in newuserutil]
-    y_axis  = [newuserutil[i] for i in newuserutil]
-    plt.bar(x_axis,y_axis)
-    plt.xlabel('User')
-    plt.ylabel('Utility')
-    # plt.show() 
+    # x_axis  = [i for i in newuserutil]
+    # y_axis  = [newuserutil[i] for i in newuserutil]
+    # plt.bar(x_axis,y_axis)
+    # plt.xlabel('User')
+    # plt.ylabel('Utility')
+    # # plt.show() 
 
-    bids = [hello[i] for i in hello]
-    price = [newowner[i] for i in newowner]
-    sum1 = 0
-    for i in newowner:
-        sum1+=newowner[i]
-    show1.append(sum1)
-    br1 = np.arange(len(bids))
-    br2 = [i + barwidth for i in br1]
-    # print(br1)
-    # print(br2)
-    plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
-    plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
+    # bids = [hello[i] for i in hello]
+    # price = [newowner[i] for i in newowner]
+    
+    # br1 = np.arange(len(bids))
+    # br2 = [i + barwidth for i in br1]
+    # # print(br1)
+    # # print(br2)
+    # plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
+    # plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-    plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
-    plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
-    plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello])
+    # plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
+    # plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
+    # plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello])
 
-    # plt.legend()
-    # plt.show()
+    # # plt.legend()
+    # # plt.show()
 
-    dem = [D[i-1] for i in finalmap2]
-    payme = [newuser[i] for i in finalmap2]
-    sum2 = 0
-    for i in finalmap2:
-        sum2+=newuser[i]
-    show2.append(sum2)
-    br1 = np.arange(len(dem))
-    br2 = [i + barwidth for i in br1]
+    # dem = [D[i-1] for i in finalmap2]
+    # payme = [newuser[i] for i in finalmap2]
+    
+    # br1 = np.arange(len(dem))
+    # br2 = [i + barwidth for i in br1]
 
-    plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
-    plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+    # plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
+    # plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-    plt.xlabel('Winning User',fontweight='bold',fontsize=15)
-    plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
-    plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
+    # plt.xlabel('Winning User',fontweight='bold',fontsize=15)
+    # plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
+    # plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
 
     # plt.legend()
     # plt.show()
@@ -371,8 +375,8 @@ payme = [show4[i] for i in range(len(show4))]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
-plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
-plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
+plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payment')
 
 plt.xlabel('Prices',fontweight='bold',fontsize=15)
 plt.ylabel('Payments',fontweight='bold',fontsize=15)
@@ -386,8 +390,8 @@ payme = [show2[i] for i in range(len(show2))]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
-plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
-plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Pricesss')
+plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Paymentss')
 
 plt.xlabel('Prices',fontweight='bold',fontsize=15)
 plt.ylabel('Payments',fontweight='bold',fontsize=15)
