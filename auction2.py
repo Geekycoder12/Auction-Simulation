@@ -14,6 +14,8 @@ import numpy as np
 
 m = random.randint(5,10)
 n = random.randint(11,25)
+# print(m)
+# print(n)
 # n=100
 # m=100
 
@@ -37,7 +39,15 @@ for i in range(n):
         temp.append(num)
     C.append(temp)
 
+Cost = {}
+for i in range(n):
+    # Cost[i]=int(input("Enter Cost of user {}:".format(i)))
+    Cost[i+1] = random.randint(1,D[i])
 
+Val = {}
+for i in range(m):
+    # Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
+    Val[i+1] = random.randint(10,13)
 
 rep = []
 for k in range(m):
@@ -51,9 +61,9 @@ x = p
 V = {}
 Priority = {}
 R = []
-# newuser = {}
-# newowner ={}
-# owneruser = {}
+newuser = {}
+newowner ={}
+owneruser = {}
 for i in range(n):
     V[i+1] = []
     temp = 0
@@ -69,41 +79,46 @@ for i in range(n):
     if(temp):
             R.append(i+1)
 
-# for i in range(n):
-#     bidmax = 0
-#     index = 0
-#     for j in range(m):
-#         if(bidmax< C[i][j]):
-#             bidmax = C[i][j]
-#             index = j
-#     newuser[i+1] = bidmax
-#     owneruser[i+1] = index+1
-# userowner = {}
-# for te in owneruser:
-#     userowner[owneruser[te]]= []
-# for te in owneruser:
-#     userowner[owneruser[te]].append(te)
+for i in range(n):
+    bidmax = 0
+    index = 0
+    for j in range(m):
+        if(bidmax< C[i][j]):
+            bidmax = C[i][j]
+            index = j
+    newuser[i+1] = bidmax
+    owneruser[i+1] = index+1
+userowner = {}
+for te in owneruser:
+    userowner[owneruser[te]]= []
+for te in owneruser:
+    userowner[owneruser[te]].append(te)
 
 
 
-# for te in userowner:
-#     bidmin = 9999999
-#     if len(userowner[te]) > 1:
-#         index = 0
-#         for j in userowner[te]:
-#             bidmin  = min(bidmin,C[j-1][te-1])
-#             # print(te)
-#             # print(j)
-#             k = j
-#         userowner[te] = j
-#         newowner[te] = bidmin
+for te in userowner:
+    bidmin  = 99999999999
+    k = 0
+    if len(userowner[te]) >= 1:
+        index = 0
+        for j in userowner[te]:
+            # bidmin  = min(bidmin,C[j-1][te-1])
+            # print(te)
+            # print(j)
+            if(bidmin>C[j-1][te-1]):
+                bidmin = C[j-1][te-1]
+                k = j
+    userowner[te] = k
+    newowner[te] = bidmin
+    
+# print(newowner)
+# print(newuser)
     
 
-    
-
-# owneruser = {}
-# for i in userowner:
-#     owneruser[userowner[i]] = i
+finalmap2 = {}
+for i in userowner:
+    finalmap2[userowner[i]] = i
+# print(finalmap2)
 
 #print(V)
 #print(R)
@@ -157,15 +172,15 @@ for i in X:
     O[X[i]].append(i)
     G[X[i]] = C[i-1][X[i]-1]
 
-Cost = {}
-for i in X:
-    # Cost[i]=int(input("Enter Cost of user {}:".format(i)))
-    Cost[i] = random.randint(1,D[i-1])
+# Cost = {}
+# for i in X:
+#     # Cost[i]=int(input("Enter Cost of user {}:".format(i)))
+#     Cost[i] = random.randint(1,D[i-1])
 
-Val = {}
-for i in O:
-    # Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
-    Val[i] = random.randint(10,13)
+# Val = {}
+# for i in O:
+#     # Val[i]=int(input("Enter Valuation of owner {}:".format(i)))
+#     Val[i] = random.randint(10,13)
 
 #Algorithm 3
 Owner = {}
@@ -177,12 +192,12 @@ for i in X:
 for i in O:
         ownerutil[i] = Val[i] - P[i]
 
-# newuserutil = {}
-# newownerutil = {}
-# for i in owneruser:
-#     newuserutil[i] = newuser[i] - Cost[i]
-# for i in userowner:
-#     newownerutil[i] = Val[i] - newowner[i]
+newuserutil = {}
+newownerutil = {}
+for i in finalmap2:
+    newuserutil[i] = newuser[i] - Cost[i]
+for i in userowner:
+    newownerutil[i] = Val[i] - newowner[i]
 
 for i in O:
     Z = O[i]
