@@ -96,6 +96,7 @@ for te in owneruser:
 
 
 
+
 for te in userowner:
     bidmin  = 99999999999
     k = 0
@@ -111,13 +112,13 @@ for te in userowner:
     userowner[te] = k
     newowner[te] = bidmin
     
-# print(newowner)
-# print(newuser)
-    
 
+    
+hello = {}
 finalmap2 = {}
 for i in userowner:
     finalmap2[userowner[i]] = i
+    hello[i] = C[userowner[i]-1][i-1]
 # print(finalmap2)
 
 #print(V)
@@ -282,7 +283,7 @@ plt.show()
 #Payments and Demands of users
 barwidth = 0.25
 fig = plt.subplots(figsize =(12, 8))
-dem = [D[i] for i in finalmap]
+dem = [D[i-1] for i in finalmap]
 payme = [Q[i] for i in finalmap]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
@@ -297,9 +298,48 @@ plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
 plt.legend()
 plt.show()
 
-# x_axis  = [i for i in newownerutil]
-# y_axis  = [newownerutil[i] for i in newownerutil]
-# plt.bar(x_axis,y_axis)
-# plt.xlabel('Model Owner')
-# plt.ylabel('Utility')
-# plt.show() 
+x_axis  = [i for i in newownerutil]
+y_axis  = [newownerutil[i] for i in newownerutil]
+plt.bar(x_axis,y_axis)
+plt.xlabel('Model Owner')
+plt.ylabel('Utility')
+plt.show() 
+
+x_axis  = [i for i in newuserutil]
+y_axis  = [newuserutil[i] for i in newuserutil]
+plt.bar(x_axis,y_axis)
+plt.xlabel('User')
+plt.ylabel('Utility')
+plt.show() 
+
+bids = [hello[i] for i in hello]
+price = [newowner[i] for i in newowner]
+
+br1 = np.arange(len(bids))
+br2 = [i + barwidth for i in br1]
+# print(br1)
+# print(br2)
+plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
+plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
+
+plt.xlabel('Model Owner',fontweight='bold',fontsize=15)
+plt.ylabel('Bids and Prices',fontweight='bold',fontsize=15)
+plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello])
+
+plt.legend()
+plt.show()
+
+dem = [D[i-1] for i in finalmap2]
+payme = [newuser[i] for i in finalmap2]
+br1 = np.arange(len(dem))
+br2 = [i + barwidth for i in br1]
+
+plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
+plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
+
+plt.xlabel('Winning User',fontweight='bold',fontsize=15)
+plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
+
+plt.legend()
+plt.show()
