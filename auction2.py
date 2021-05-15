@@ -210,9 +210,9 @@ for i in O:
                     break
             l = random.randint(0,b)
             Owner[i] = Z[b]
-# payment = {}
-# for i in Owner:
-#     payment[Owner[i]] = Q[Owner[i]]
+finalmap = {}
+for i in Owner:
+    finalmap[Owner[i]] = i
 # print(P)
 # print(Q)
 # print(G)
@@ -238,8 +238,8 @@ plt.xlabel('Model Owner')
 plt.ylabel('Utility')
 plt.show() 
 
-x_axis = [i for i in userutil]
-y_axis = [userutil[i] for i in userutil]
+x_axis = [i for i in finalmap]
+y_axis = [userutil[i] for i in finalmap]
 plt.bar(x_axis,y_axis)
 plt.xlabel('Data Owner')
 plt.ylabel('Utility')
@@ -267,8 +267,8 @@ plt.show()
 #Payments and Demands of users
 barwidth = 0.25
 fig = plt.subplots(figsize =(12, 8))
-dem = [D[i] for i in X]
-payme = [Q[i] for i in X]
+dem = [D[i] for i in finalmap]
+payme = [Q[i] for i in finalmap]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
@@ -277,7 +277,7 @@ plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
 plt.xlabel('Winning User',fontweight='bold',fontsize=15)
 plt.ylabel('Demands and Payments',fontweight='bold',fontsize=15)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in X])
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
 
 plt.legend()
 plt.show()
