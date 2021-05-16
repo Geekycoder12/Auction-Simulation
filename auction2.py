@@ -22,7 +22,7 @@ show1 = []
 show2 = []
 show3 = []
 show4 = []
-for hum in range(m,120,10):
+for hum in range(m,150,10):
     n = hum
     D =[]
     for i in range(n):
@@ -390,8 +390,8 @@ payme = [show2[i] for i in range(len(show2))]
 br1 = np.arange(len(dem))
 br2 = [i + barwidth for i in br1]
 
-plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Pricesss')
-plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Paymentss')
+plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
+plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
 plt.xlabel('Prices',fontweight='bold',fontsize=15)
 plt.ylabel('Payments',fontweight='bold',fontsize=15)
