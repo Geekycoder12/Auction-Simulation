@@ -12,8 +12,8 @@ import numpy as np
 # m = int(input("Enter no of model owners:"))
 # n = int(input("Enter no of users:"))
 
-m = random.randint(5,10)
-n = random.randint(11,25)
+m = random.randint(5,15)
+n = random.randint(15,25)
 
 D =[]
 for i in range(n):
@@ -325,3 +325,4 @@ plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
 
 plt.legend()
 plt.show()
+
