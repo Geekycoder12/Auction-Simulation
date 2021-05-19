@@ -378,8 +378,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payment')
 
-plt.xlabel('Prices',fontweight='bold',fontsize=15)
-plt.ylabel('Payments',fontweight='bold',fontsize=15)
+plt.xlabel('Prices',fontweight='bold',fontsize=20)
+plt.ylabel('Payments',fontweight='bold',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(dem))],[r for r in show3])
 
 plt.legend()
@@ -393,8 +393,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Prices',fontweight='bold',fontsize=15)
-plt.ylabel('Payments',fontweight='bold',fontsize=15)
+plt.xlabel('Prices',fontweight='bold',fontsize=20)
+plt.ylabel('Payments',fontweight='bold',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(dem))],[r for r in show1])
 
 plt.legend()
