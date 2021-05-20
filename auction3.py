@@ -230,15 +230,15 @@ for i in Owner:
 x_axis  = [i for i in ownerutil]
 y_axis  = [ownerutil[i] for i in ownerutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Model Owner',fontweight = 'bold')
-plt.ylabel('Utility',fontweight = 'bold')
+plt.xlabel('Model Owner',fontsize = 20)
+plt.ylabel('Utility',fontsize = 20)
 plt.show() 
 
 x_axis = [i for i in finalmap]
 y_axis = [userutil[i] for i in finalmap]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Data Owner',fontweight = 'bold',fontsize = 20)
-plt.ylabel('Utility',fontweight = 'bold',fontsize = 20)
+plt.xlabel('Data Owner',fontsize = 20)
+plt.ylabel('Utility',fontsize = 20)
 plt.show()
 
 barwidth = 0.25
@@ -253,8 +253,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
 plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-plt.xlabel('Model Owner',fontweight='bold',fontsize=20)
-plt.ylabel('Bids and Prices',fontweight='bold',fontsize=20)
+plt.xlabel('Model Owner',fontsize=20)
+plt.ylabel('Bids and Prices',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
 
 plt.legend()
@@ -272,8 +272,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Winning User',fontweight='bold',fontsize=20)
-plt.ylabel('Demands and Payments',fontweight='bold',fontsize=20)
+plt.xlabel('Winning User',fontsize=20)
+plt.ylabel('Demands and Payments',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
 
 plt.legend()
@@ -282,15 +282,15 @@ plt.show()
 x_axis  = [i for i in newownerutil]
 y_axis  = [newownerutil[i] for i in newownerutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Model Owner',fontweight = 'bold',fontsize = 20)
-plt.ylabel('Utility',fontweight = 'bold',fontsize = 20)
+plt.xlabel('Model Owner',fontsize = 20)
+plt.ylabel('Utility',fontsize = 20)
 plt.show() 
 
 x_axis  = [i for i in newuserutil]
 y_axis  = [newuserutil[i] for i in newuserutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('User',fontweight = 'bold',fontsize = 20)
-plt.ylabel('Utility',fontweight = 'bold',fontsize = 20)
+plt.xlabel('User',fontsize = 20)
+plt.ylabel('Utility',fontsize = 20)
 plt.show() 
 
 bids = [hello[i] for i in hello]
@@ -303,8 +303,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
 plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-plt.xlabel('Model Owner',fontweight='bold',fontsize=20)
-plt.ylabel('Bids and Prices',fontweight='bold',fontsize=20)
+plt.xlabel('Model Owner',fontsize=20)
+plt.ylabel('Bids and Prices',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello])
 
 plt.legend()
@@ -319,8 +319,8 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Winning User',fontweight='bold',fontsize=20)
-plt.ylabel('Demands and Payments',fontweight='bold',fontsize=20)
+plt.xlabel('Winning User',fontsize=20)
+plt.ylabel('Demands and Payments',fontsize=20)
 plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
 
 plt.legend()
