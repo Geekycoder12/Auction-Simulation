@@ -7,7 +7,7 @@ import time
 import matplotlib.pyplot as plt
 
 import numpy as np
-# begin = time.time()
+begin = time.time()
 #Algorithm 1
 # m = int(input("Enter no of model owners:"))
 # n = int(input("Enter no of users:"))
@@ -184,9 +184,10 @@ userutil = {}
 ownerutil = {}
 for i in X:
     userutil[i] = Q[i] - Cost[i]
-
+totalindummy = 0
 for i in O:
         ownerutil[i] = Val[i] - P[i]
+        totalindummy+=1
 
 newuserutil = {}
 newownerutil = {}
@@ -222,23 +223,30 @@ for i in O:
             l = random.randint(0,b)
             Owner[i] = Z[b]
 finalmap = {}
+total = 0
 for i in Owner:
     finalmap[Owner[i]] = i
+    total+=1
 
-
-
+end = time.time()
+# print(end-begin)
+fig = plt.subplots(figsize =(12, 8))
 x_axis  = [i for i in ownerutil]
 y_axis  = [ownerutil[i] for i in ownerutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Model Owner',fontsize = 20)
-plt.ylabel('Utility',fontsize = 20)
+plt.xlabel('Model Owner',fontsize = 30)
+plt.ylabel('Utility',fontsize = 30)
+plt.xticks(fontsize = 20)
+plt.yticks(fontsize = 20)
 plt.show() 
-
+fig = plt.subplots(figsize =(12, 8))
 x_axis = [i for i in finalmap]
 y_axis = [userutil[i] for i in finalmap]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Data Owner',fontsize = 20)
-plt.ylabel('Utility',fontsize = 20)
+plt.xlabel('Data Owner',fontsize = 30)
+plt.ylabel('Utility',fontsize = 30)
+plt.xticks(fontsize = 20)
+plt.yticks(fontsize = 20)
 plt.show()
 
 barwidth = 0.25
@@ -253,11 +261,11 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
 plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-plt.xlabel('Model Owner',fontsize=20)
-plt.ylabel('Bids and Prices',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G])
-
-plt.legend()
+plt.xlabel('Model Owner',fontsize=30)
+plt.ylabel('Bids and Prices',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(bids))],[r for r in G],fontsize = 20)
+plt.yticks(fontsize = 20)
+plt.legend(prop = {'size':20})
 plt.show()
 
 #Payments and Demands of users
@@ -272,26 +280,34 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Winning User',fontsize=20)
-plt.ylabel('Demands and Payments',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap])
+plt.xlabel('Winning User',fontsize=30)
+plt.ylabel('Demands and Payments',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap],fontsize = 20)
+plt.yticks(fontsize = 20)
 
-plt.legend()
+plt.legend(prop = {'size':20})
 plt.show()
-
+fig = plt.subplots(figsize =(12, 8))
 x_axis  = [i for i in newownerutil]
 y_axis  = [newownerutil[i] for i in newownerutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('Model Owner',fontsize = 20)
-plt.ylabel('Utility',fontsize = 20)
+plt.xlabel('Model Owner',fontsize = 30)
+plt.ylabel('Utility',fontsize = 30)
+plt.xticks(fontsize = 20)
+plt.yticks(fontsize = 20)
 plt.show() 
-
+fig = plt.subplots(figsize =(12, 8))
 x_axis  = [i for i in newuserutil]
 y_axis  = [newuserutil[i] for i in newuserutil]
 plt.bar(x_axis,y_axis)
-plt.xlabel('User',fontsize = 20)
-plt.ylabel('Utility',fontsize = 20)
+plt.xlabel('User',fontsize = 30)
+plt.ylabel('Utility',fontsize = 30)
+plt.xticks(fontsize = 20)
+plt.yticks(fontsize = 20)
 plt.show() 
+
+barwidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
 
 bids = [hello[i] for i in hello]
 price = [newowner[i] for i in newowner]
@@ -303,13 +319,14 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,bids,color='r',width=barwidth,edgecolor='grey',label='Bid')
 plt.bar(br2,price,color='g',width=barwidth,edgecolor='grey',label='Price')
 
-plt.xlabel('Model Owner',fontsize=20)
-plt.ylabel('Bids and Prices',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello])
-
-plt.legend()
+plt.xlabel('Model Owner',fontsize=30)
+plt.ylabel('Bids and Prices',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(bids))],[r for r in hello],fontsize = 20)
+plt.yticks(fontsize = 20)
+plt.legend(prop = {'size':20})
 plt.show()
-
+barwidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
 dem = [D[i-1] for i in finalmap2]
 payme = [newuser[i] for i in finalmap2]
 
@@ -319,10 +336,10 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Demands')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Winning User',fontsize=20)
-plt.ylabel('Demands and Payments',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2])
-
-plt.legend()
+plt.xlabel('Winning User',fontsize=30)
+plt.ylabel('Demands and Payments',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in finalmap2],fontsize = 20)
+plt.yticks(fontsize = 20)
+plt.legend(prop = {'size':20})
 plt.show()
 

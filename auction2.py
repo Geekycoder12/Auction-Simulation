@@ -18,12 +18,16 @@ import numpy as np
 # print(n)
 # n=50
 m=50
+total1 = []
+total2 = []
 show1 = []
 show2 = []
 show3 = []
 show4 = []
+number = []
 for hum in range(m,150,10):
     n = hum
+    number.append(n)
     D =[]
     for i in range(n):
         # D.append((int(input("Enter Demand of User {}:".format(i+1)))))
@@ -120,9 +124,11 @@ for hum in range(m,150,10):
         
     hello = {}
     finalmap2 = {}
+    totalindummy = 0
     for i in userowner:
         finalmap2[userowner[i]] = i
         hello[i] = C[userowner[i]-1][i-1]
+        totalindummy+=1
     # print(finalmap2)
 
     #print(V)
@@ -231,8 +237,10 @@ for hum in range(m,150,10):
                 l = random.randint(0,b)
                 Owner[i] = Z[b]
     finalmap = {}
+    total = 0
     for i in Owner:
         finalmap[Owner[i]] = i
+        total+=1
     sum3 = 0
     for i in P:
         sum3+=P[i]
@@ -249,6 +257,8 @@ for hum in range(m,150,10):
     for i in newowner:
         sum1+=newowner[i]
     show1.append(sum1)
+    total1.append(total)
+    total2.append(totalindummy)
     # print(P)
     # print(Q)
     # print(G)
@@ -370,6 +380,19 @@ for hum in range(m,150,10):
     # Budget Balancing
 barwidth = 0.25
 fig = plt.subplots(figsize =(12, 8))
+
+# tot1 = [total1[i] for i in range(len(total1))]
+# tot2 = [total2[i] for i in range(len(total2))]
+# br1 = np.arange(len(tot1))
+# br2 = [i + barwidth for i in br1]
+# plt.bar(br1,tot1,color='r',width=barwidth,edgecolor='grey',label='Total Winners in proposed auction')
+# plt.bar(br2,tot2,color='g',width=barwidth,edgecolor='grey',label='Total Winners in dummy auction')
+# plt.xlabel('Total Wnners(proposed auction)',fontsize=20)
+# plt.ylabel('Total Winners(dummy auction)',fontsize=20)
+# plt.xticks([r + barwidth for r in range(len(tot1))],[r for r in number])
+# plt.legend()
+# plt.show()
+
 dem = [show3[i] for i in range(len(show3))]
 payme = [show4[i] for i in range(len(show4))]
 br1 = np.arange(len(dem))
@@ -378,12 +401,15 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payment')
 
-plt.xlabel('Prices',fontsize=20)
-plt.ylabel('Payments',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in show3])
-
-plt.legend()
+plt.xlabel('No of Users',fontsize=30)
+plt.ylabel('Payments and Prices',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in number],fontsize = 20)
+plt.yticks(fontsize = 20)
+plt.legend(prop = {'size':20})
 plt.show()
+
+barwidth = 0.25
+fig = plt.subplots(figsize =(12, 8))
 
 dem = [show1[i] for i in range(len(show1))]
 payme = [show2[i] for i in range(len(show2))]
@@ -393,9 +419,10 @@ br2 = [i + barwidth for i in br1]
 plt.bar(br1,dem,color='r',width=barwidth,edgecolor='grey',label='Prices')
 plt.bar(br2,payme,color='g',width=barwidth,edgecolor='grey',label='Payments')
 
-plt.xlabel('Prices',fontsize=20)
-plt.ylabel('Payments',fontsize=20)
-plt.xticks([r + barwidth for r in range(len(dem))],[r for r in show1])
-
-plt.legend()
+plt.xlabel('No of users(dummy auction)',fontsize=30)
+plt.ylabel('Payments and Prices',fontsize=30)
+plt.xticks([r + barwidth for r in range(len(dem))],[r for r in number],fontsize = 20)
+plt.yticks(fontsize = 20)
+plt.legend(prop = {'size':20})
 plt.show()
+# pdf(plt.show())
