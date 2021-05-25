@@ -79,46 +79,46 @@ for n in nss:
             if(temp):
                     R.append(i+1)
 
-        for i in range(n):
-            bidmax = 0
-            index = 0
-            for j in range(m):
-                if(bidmax< C[i][j]):
-                    bidmax = C[i][j]
-                    index = j
-            newuser[i+1] = bidmax
-            owneruser[i+1] = index+1
-        userowner = {}
-        for te in owneruser:
-            userowner[owneruser[te]]= []
-        for te in owneruser:
-            userowner[owneruser[te]].append(te)
+        # for i in range(n):
+        #     bidmax = 0
+        #     index = 0
+        #     for j in range(m):
+        #         if(bidmax< C[i][j]):
+        #             bidmax = C[i][j]
+        #             index = j
+        #     newuser[i+1] = bidmax
+        #     owneruser[i+1] = index+1
+        # userowner = {}
+        # for te in owneruser:
+        #     userowner[owneruser[te]]= []
+        # for te in owneruser:
+        #     userowner[owneruser[te]].append(te)
 
 
 
 
-        for te in userowner:
-            bidmin  = 99999999999
-            k = 0
-            if len(userowner[te]) >= 1:
-                index = 0
-                for j in userowner[te]:
-                    # bidmin  = min(bidmin,C[j-1][te-1])
-                    # print(te)
-                    # print(j)
-                    if(bidmin>C[j-1][te-1]):
-                        bidmin = C[j-1][te-1]
-                        k = j
-            userowner[te] = k
-            newowner[te] = bidmin
+        # for te in userowner:
+        #     bidmin  = 99999999999
+        #     k = 0
+        #     if len(userowner[te]) >= 1:
+        #         index = 0
+        #         for j in userowner[te]:
+        #             # bidmin  = min(bidmin,C[j-1][te-1])
+        #             # print(te)
+        #             # print(j)
+        #             if(bidmin>C[j-1][te-1]):
+        #                 bidmin = C[j-1][te-1]
+        #                 k = j
+        #     userowner[te] = k
+        #     newowner[te] = bidmin
             
 
             
-        hello = {}
-        finalmap2 = {}
-        for i in userowner:
-            finalmap2[userowner[i]] = i
-            hello[i] = C[userowner[i]-1][i-1]
+        # hello = {}
+        # finalmap2 = {}
+        # for i in userowner:
+        #     finalmap2[userowner[i]] = i
+        #     hello[i] = C[userowner[i]-1][i-1]
         # print(finalmap2)
 
         #print(V)
@@ -194,12 +194,12 @@ for n in nss:
                 ownerutil[i] = Val[i] - P[i]
                 totalindummy+=1
 
-        newuserutil = {}
-        newownerutil = {}
-        for i in finalmap2:
-            newuserutil[i] = newuser[i] - Cost[i]
-        for i in userowner:
-            newownerutil[i] = Val[i] - newowner[i]
+        # newuserutil = {}
+        # newownerutil = {}
+        # for i in finalmap2:
+        #     newuserutil[i] = newuser[i] - Cost[i]
+        # for i in userowner:
+        #     newownerutil[i] = Val[i] - newowner[i]
 
         for i in O:
             Z = O[i]
@@ -238,10 +238,10 @@ for n in nss:
 
 gr = [[final_result[j*len(nss)+i] for i in range(len(mss))] for j in range(len(nss))]
 
-print(gr)
+# print(gr)
 
 mar = ['o', '*', 's', '^']
-
+fig = plt.subplots(figsize = (12, 8))
 for i in range(len(nss)):
     x_axis = [k for k in mss]
     y_axis = [gr[i][j] for j in range(len(nss))]
